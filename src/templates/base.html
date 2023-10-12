@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar" id="navbarRight">
+                <ul class="navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="nav-link">{{ user.username }}</div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
+<div class="container pt-5 pb-5">
+    {% bootstrap_messages %}
+    {% block content %} Страница в разработке {% endblock %}
+</div>
+</body>
+</html>
