@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Recipe, Сategory
+from .models import Recipe, Category
 
 
 @admin.register(Recipe)
@@ -9,7 +9,7 @@ class CompanyAdmin(admin.ModelAdmin):
     ordering = ('name',)
 
 
-@admin.register(Сategory)
+@admin.register(Category)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name',)
     ordering = ('name',)

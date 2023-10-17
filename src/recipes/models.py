@@ -5,11 +5,12 @@ from src.settings import AUTH_USER_MODEL
 class Recipe(models.Model):
     name = models.CharField(verbose_name="Название", max_length=100)
     description = models.TextField(verbose_name="Описание")
+    ingredients = models.TextField(verbose_name="Ингридиенты")
     steps = models.TextField(verbose_name="Шаги приготовления")
     time = models.TimeField(verbose_name="Время приготовления")
-    image = models.ImageField(verbose_name="Изображение")
-    author = models.ForeignKey(AUTH_USER_MODEL, related_name="recipes", on_delete=models.CASCADE)
-    categories = models.ManyToManyField("Сategory", verbose_name="Категории", blank=True, related_name="recipes")
+    image = models.ImageField(verbose_name="Изображение", upload_to='recipes_img/')
+    author = models.ForeignKey(AUTH_USER_MODEL, related_name="recipes", on_delete=models.CASCADE, editable=False)
+    categories = models.ManyToManyField("Category", verbose_name="Категории", related_name="recipes")
 
     class Meta:
         ordering = ["name"]
@@ -20,7 +21,7 @@ class Recipe(models.Model):
         return self.name
 
 
-class Сategory(models.Model):
+class Category(models.Model):
     name = models.CharField(verbose_name="Название категории", max_length=100)
 
     class Meta:
