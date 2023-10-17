@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<h1>{{ recipe.name }}</h1>
+<p>Автор: {{ recipe.author.get_full_name }}</p>
+<p>Категории:
+    {% for cat in recipe.categories.all %}
+    {{ cat.name }}
+    {% endfor %}
+</p>
+<img src="{{ recipe.image.url }}" alt="recipe image" style="max-height:300px">
+<p>{{ recipe.description }}</p>
+<h2>Ингридиенты</h2>
+<p>{{ recipe.ingredients }}</p>
+<h2>Как приготовить</h2>
+<p>{{ recipe.steps }}</p>
+
+{% if request.user.pk == recipe.author_id %}
+<a class="btn btn-primary mt-3" href="#" role="button">Редактировать</a>
+<a class="btn btn-danger mt-3" href="#" role="button">Удалить</a>
+{% endif %}
+
+{% endblock %}

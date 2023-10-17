@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from src.settings import AUTH_USER_MODEL
 
 
@@ -19,6 +20,9 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse_lazy('recipe_detail', kwargs={'recipe_id': self.pk})
 
 
 class Category(models.Model):
