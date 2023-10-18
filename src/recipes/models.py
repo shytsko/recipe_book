@@ -8,7 +8,7 @@ class Recipe(models.Model):
     description = models.TextField(verbose_name="Описание")
     ingredients = models.TextField(verbose_name="Ингридиенты")
     steps = models.TextField(verbose_name="Шаги приготовления")
-    time = models.TimeField(verbose_name="Время приготовления")
+    time = models.PositiveIntegerField(verbose_name="Время приготовления (мин)")
     image = models.ImageField(verbose_name="Изображение", upload_to='recipes_img/')
     author = models.ForeignKey(AUTH_USER_MODEL, related_name="recipes", on_delete=models.CASCADE, editable=False)
     categories = models.ManyToManyField("Category", verbose_name="Категории", related_name="recipes")
