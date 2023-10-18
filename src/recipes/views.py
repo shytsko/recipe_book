@@ -59,6 +59,10 @@ class RecipeDetailView(DetailView):
         context['title'] = self.object.name
         return context
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related("author")
+
 
 class RecipeListViewBase(ListView):
     model = Recipe

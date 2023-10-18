@@ -25,6 +25,8 @@ urlpatterns = [
     path('', RedirectView.as_view(pattern_name='recipe_list_random'), name='home'),
     path('user/', include('user.urls')),
     path('recipe/', include('recipes.urls')),
+    path('__debug__/', include("debug_toolbar.urls")),
+
 ]
 
 if settings.DEBUG:
