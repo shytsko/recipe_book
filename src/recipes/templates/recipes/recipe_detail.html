@@ -4,18 +4,24 @@
 {% block content %}
 
 <h1>{{ recipe.name }}</h1>
-<p>Автор: {{ recipe.author.get_full_name }}</p>
+
+<p>
+    {% if request.user.pk == recipe.author_id %}
+    Мой рецепт
+    {% else %}
+    Автор: {{ recipe.author.username }}</p>
+{% endif %}
 <p>Категории:
     {% for cat in recipe.categories.all %}
-    {{ cat.name }}
+    <a href="{{ cat.get_absolute_url }}"> {{ cat.name }}</a>
     {% endfor %}
 </p>
 <img src="{{ recipe.image.url }}" alt="recipe image" style="max-height:300px">
-<p>{{ recipe.description }}</p>
+<p>{{ recipe.description|linebreaksbr }}</p>
 <h2>Ингридиенты</h2>
-<p>{{ recipe.ingredients }}</p>
+<p>{{ recipe.ingredients|linebreaksbr }}</p>
 <h2>Как приготовить</h2>
-<p>{{ recipe.steps }}</p>
+<p>{{ recipe.steps|linebreaksbr }}</p>
 
 {% if request.user.pk == recipe.author_id %}
 <a class="btn btn-primary mt-3" href="#" role="button">Редактировать</a>
