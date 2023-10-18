@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
@@ -69,13 +71,23 @@ class RecipeListViewBase(ListView):
         return context
 
 
-class RecipeListAllViewBase(RecipeListViewBase):
+class RecipeListAllView(RecipeListViewBase):
     title = 'Все рецепты'
 
 
-class RecipeListMyViewBase(RecipeListViewBase):
+class RecipeListMyView(RecipeListViewBase):
     title = 'Мои рецепты'
 
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(author_id=self.request.user.pk)
+
+
+class RecipeListRandomView(RecipeListViewBase):
+    title = 'Случайные рецепты'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        all_pk = list(queryset.values_list("pk", flat=True))
+        random_pk = random.sample(all_pk, 5)
+        return queryset.filter(pk__in=random_pk)
