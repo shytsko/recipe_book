@@ -71,3 +71,11 @@ class RecipeListViewBase(ListView):
 
 class RecipeListAllViewBase(RecipeListViewBase):
     title = 'Все рецепты'
+
+
+class RecipeListMyViewBase(RecipeListViewBase):
+    title = 'Мои рецепты'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(author_id=self.request.user.pk)
