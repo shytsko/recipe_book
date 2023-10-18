@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from .forms import RecipeForm
 from .mixins import RecipeAuthorCheckMixin
@@ -9,7 +9,7 @@ from .models import Recipe
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     form_class = RecipeForm
-    template_name = 'recipes/recipe_create.html'
+    template_name = 'recipes/recipe_edit.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -31,6 +31,18 @@ class RecipeDeleteView(LoginRequiredMixin, RecipeAuthorCheckMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Удалить рецепт?'
         context['cancel_url'] = self.object.get_absolute_url()
+        return context
+
+
+class RecipeUpdateView(LoginRequiredMixin, RecipeAuthorCheckMixin, UpdateView):
+    form_class = RecipeForm
+    model = Recipe
+    template_name = 'recipes/recipe_edit.html'
+    pk_url_kwarg = 'recipe_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Изменение рецепта'
         return context
 
 
