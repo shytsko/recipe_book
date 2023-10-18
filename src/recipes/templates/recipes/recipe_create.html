@@ -2,7 +2,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h2>Новый рецепт</h2>
+<h2>{{ title }}</h2>
 <form method="post" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' enctype='multipart/form-data' %}

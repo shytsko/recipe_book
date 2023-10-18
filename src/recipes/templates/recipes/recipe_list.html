@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+    <div class="row gap-3 justify-content-center">
+        {% for recipe in recipe_list %}
+        <div class="card col-xs-12 col-sm-6 col-md-3">
+            <img src="{{ recipe.image.url }}" class="card-img-top mt-2" alt="recipe image">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p class="card-text">{{ recipe.description }}</p>
+                <a href="{{ recipe.get_absolute_url }}" class="btn btn-primary mb-auto">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
