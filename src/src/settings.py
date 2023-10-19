@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'debug_toolbar',
+    'django_cleanup',
     'user',
     'recipes'
 ]
