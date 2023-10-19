@@ -6,22 +6,22 @@
 <h1 class="text-center pb-5">{{ title }}</h1>
 
 {% for recipe in recipe_list %}
-{% if forloop.first %}
-<div class="row gap-3 justify-content-center">
-    {% endif %}
-    <div class="card col-xs-12 col-sm-6 col-md-3">
-        <img src="{{ recipe.image.url }}" class="card-img-top mt-2" alt="recipe image">
-        <div class="card-body">
-            <h5 class="card-title">{{ recipe.name }}</h5>
-            <p class="card-text">{{ recipe.description }}</p>
-            <a href="{{ recipe.get_absolute_url }}" class="btn btn-primary mb-auto">Подробнее</a>
+<div class="card  mb-5">
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ recipe.image.url }}" class="card-img-top" alt="recipe image">
+        </div>
+        <div class="col-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p class="card-text">{{ recipe.description }}</p>
+                <a href="{{ recipe.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+            </div>
         </div>
     </div>
-    {% if forloop.last %}
 </div>
-{% endif %}
 {% empty %}
-    <p>Рецептов пока нет</p>
+<p>Рецептов пока нет</p>
 {% endfor %}
 
 
