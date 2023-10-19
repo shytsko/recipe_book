@@ -65,7 +65,10 @@
 </div>
 <div class="container pt-5 pb-5">
     {% bootstrap_messages %}
+    <h1 class="text-center pb-5">{{ title }}</h1>
+    {% include 'pagination.html' %}
     {% block content %} Страница в разработке {% endblock %}
+    {% include 'pagination.html' %}
 </div>
 </body>
 </html>

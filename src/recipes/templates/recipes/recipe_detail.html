@@ -2,9 +2,6 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-<h1>{{ recipe.name }}</h1>
-
 <p>
     {% if request.user.pk == recipe.author_id %}
     Мой рецепт

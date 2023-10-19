@@ -68,6 +68,8 @@ class RecipeListViewBase(ListView):
     model = Recipe
     template_name = 'recipes/recipe_list.html'
     title = ''
+    paginate_by = 5
+    paginate_orphans = 1
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
