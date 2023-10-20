@@ -25,7 +25,7 @@ class Recipe(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('recipe_detail', kwargs={'recipe_id': self.pk})
+        return reverse_lazy('recipe_detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:

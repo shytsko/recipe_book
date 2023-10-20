@@ -26,7 +26,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 class RecipeDeleteView(LoginRequiredMixin, RecipeAuthorCheckMixin, DeleteView):
     model = Recipe
     template_name = 'recipes/delete_confirm.html'
-    pk_url_kwarg = 'recipe_id'
     success_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
@@ -40,7 +39,6 @@ class RecipeUpdateView(LoginRequiredMixin, RecipeAuthorCheckMixin, UpdateView):
     form_class = RecipeForm
     model = Recipe
     template_name = 'recipes/recipe_edit.html'
-    pk_url_kwarg = 'recipe_id'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,7 +50,6 @@ class RecipeDetailView(DetailView):
     model = Recipe
     context_object_name = 'recipe'
     template_name = 'recipes/recipe_detail.html'
-    pk_url_kwarg = 'recipe_id'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

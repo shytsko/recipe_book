@@ -21,8 +21,8 @@
 <p>{{ recipe.steps|linebreaksbr }}</p>
 
 {% if request.user.pk == recipe.author_id %}
-<a class="btn btn-primary mt-3" href="{% url 'recipe_update' recipe.pk %}" role="button">Редактировать</a>
-<a class="btn btn-danger mt-3" href="{% url 'recipe_delete' recipe.pk %}" role="button">Удалить</a>
+<a class="btn btn-primary mt-3" href="{% url 'recipe_update' recipe.slug %}" role="button">Редактировать</a>
+<a class="btn btn-danger mt-3" href="{% url 'recipe_delete' recipe.slug %}" role="button">Удалить</a>
 {% endif %}
 
 {% endblock %}
