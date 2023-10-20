@@ -12,63 +12,15 @@
     <title>{% block title %}{{ title }}{% endblock %}</title>
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'recipe_list_all' %}">Все
-                            рецепты</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'recipe_list_my' %}">Мои рецепты</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'recipe_create' %}">Добавить
-                            рецепт</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="navbar" id="navbarRight">
-                <ul class="navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <div class="nav-link">{{ user.username }}</div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Выход</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+<div class="container bg-dark">
+    {% include 'include/navbar.html' %}
 </div>
-<div class="container pt-5 pb-5">
+<div class="container p-5 bg-light">
     {% bootstrap_messages %}
     <h1 class="text-center pb-5">{{ title }}</h1>
-    {% include 'pagination.html' %}
+    {% include 'include/pagination.html' %}
     {% block content %} Страница в разработке {% endblock %}
-    {% include 'pagination.html' %}
+    {% include 'include/pagination.html' %}
 </div>
 </body>
 </html>
