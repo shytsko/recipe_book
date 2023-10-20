@@ -2,10 +2,11 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h2>Вход</h2>
-<form method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="Войти" %}
-</form>
+<div class="d-flex justify-content-center">
+    <form method="post" class="form w-50">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="Войти" %}
+    </form>
+</div>
 {% endblock %}
