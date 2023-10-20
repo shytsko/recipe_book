@@ -4,12 +4,15 @@ from .models import Recipe, Category
 
 
 @admin.register(Recipe)
-class CompanyAdmin(admin.ModelAdmin):
+class RecipeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     ordering = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Category)
-class CompanyAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     ordering = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('slug',)

@@ -4,5 +4,6 @@ django-bootstrap5==23.3
 django-cleanup==8.0.0
 django-debug-toolbar==4.2.0
 Pillow==10.1.0
+pytils==0.4.1
 sqlparse==0.4.4
 tzdata==2023.3
