@@ -3,14 +3,18 @@
 
 {% block content %}
 <p>
-    {% if request.user.pk == recipe.author_id %}
-    Мой рецепт
-    {% else %}
-    Автор: {{ recipe.author.username }}</p>
+    {% if not request.user.pk == recipe.author_id %}
+    Автор: <a href="{% url 'recipe_list_by_author' recipe.author.username %}" role="button" class="btn btn-secondary"
+              style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .25rem;">
+    {{ recipe.author.username }}</a>
+</p>
 {% endif %}
-<p>Категории:
+<p>
     {% for cat in recipe.categories.all %}
-    <a href="{{ cat.get_absolute_url }}"> {{ cat.name }}</a>
+    <a href="{{ cat.get_absolute_url }}" role="button" class="btn btn-secondary"
+       style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
+        {{ cat.name }}
+    </a>
     {% endfor %}
 </p>
 <img src="{{ recipe.image.url }}" alt="recipe image" style="max-height:300px">

@@ -46,5 +46,4 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        # return reverse_lazy('category_list', kwargs={'category_id': self.pk})
-        return "#"
+        return reverse_lazy('recipe_list_by_category', kwargs={'slug': self.slug})
