@@ -96,12 +96,16 @@ class RecipeListMyView(RecipeListViewBase):
 
 class RecipeListRandomView(RecipeListViewBase):
     title = 'Случайные рецепты'
+    recipes_nums = 5
 
     def get_queryset(self):
         queryset = super().get_queryset()
         all_pk = list(queryset.values_list("pk", flat=True))
-        random_pk = random.sample(all_pk, 5)
-        return queryset.filter(pk__in=random_pk)
+        if len(all_pk) <= self.recipes_nums:
+            return queryset
+        else:
+            random_pk = random.sample(all_pk, self.recipes_nums)
+            return queryset.filter(pk__in=random_pk)
 
 
 class RecipeListByCategoryView(RecipeListViewBase):

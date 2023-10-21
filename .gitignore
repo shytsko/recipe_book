@@ -5,3 +5,6 @@
 /.env
 
 
+/src/db.json
+/src/.env.dev
+/src/.env
