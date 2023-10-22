@@ -48,5 +48,7 @@ services:
     restart: always
     env_file:
       - docker/env/.env.dev
+    ports:
+        - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data/
