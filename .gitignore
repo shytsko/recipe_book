@@ -6,5 +6,5 @@
 
 
 /src/db.json
-/src/.env.dev
+/src/docker/env/.env.dev
 /src/.env
