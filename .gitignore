@@ -9,3 +9,4 @@
 /src/docker/env/.env.dev
 /src/.env
 /src/docker/env/.env.prod
+/src/.env.dev
