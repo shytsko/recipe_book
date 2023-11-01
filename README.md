@@ -26,6 +26,8 @@ DATABASES = {
 
 ```commandline
 cd src
+```
+```commandline
 python manage.py runserver
 ```
 
@@ -37,7 +39,11 @@ python manage.py runserver
 
 ```commandline
 cd src
+```
+```commandline
 docker compose -f docker-compose.dev.yml build
+```
+```commandline
 docker compose -f docker-compose.dev.yml up
 ```
 
@@ -48,7 +54,11 @@ docker compose -f docker-compose.dev.yml up
 
 ```commandline
 docker exec -it django sh
+```
+```commandline
 /app # python -Xutf8 manage.py loaddata db.json
+```
+```commandline
 /app # exit
 ```
 
@@ -58,7 +68,11 @@ docker exec -it django sh
 
 ```commandline
 docker exec -it django sh
+```
+```commandline
 /app # python manage.py createsuperuser
+```
+```commandline
 /app # exit
 ```
 
