@@ -19,7 +19,7 @@ env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(env_file=Path(BASE_DIR / '.env.dev'))
+environ.Env.read_env(env_file=Path(BASE_DIR / 'docker' / 'env' / '.env.dev'))
 # environ.Env.read_env(env_file=Path(BASE_DIR / 'docker/env/.env.prod'))
 
 # Quick-start development settings - unsuitable for production
